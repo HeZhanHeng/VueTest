@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<!-- 1、导入vue -->
+		<script src="./libs/vue.js"></script>
+		<style>
+			[v-cloak]{
+				display: none;
+			}
+			</style>
+	</head>
+	<body>
+		<div id="app">
+		<p v-cloak>====={{msg}}=======</p>
+		<h4  v-text="msg">*********</h4>
+		<div v-html="msg2">$$$$$$$$$</div>
+		<input type="button" value="按钮" v-bind:title="title+'123'" />
+		<input type="button" value="点击事件" v-on:click="show" />
+		<input type="button" value="点击事件" v-on:mouseover="show" />
+		<h5  :title="title" v-on:click="show">666</h5>
+		<!-- <input type="button" value="按钮"   :title="title+'123'"/> -->
+		</div>
+		
+	</body>
+	<!-- 2、创建一个实例 -->
+		<!-- 导入包后浏览器内存中就多了个vue的构造函数 -->
+	<script>
+		var vm=new Vue({
+			el: "#app" ,       //表示当前我们new的这个实例，要控制页面上的哪个区域
+			data:{              //存放el中的数据
+				msg:"欢迎学习vue"  ,//通过vue提供的指令，很方便就能把数据渲染到页面上
+				msg2:'<h1>我是一个大标题</h1>',
+				title:'这是一个自己定义的title'
+			},
+			// 在此属性中定义当前所有实例可用的方法
+			methods:{
+				show:function(){
+					alert('hello')
+				}
+			}
+		})
+	</script>
+</html>

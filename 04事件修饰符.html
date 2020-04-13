@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="./libs/vue.js"></script>
+	</head>
+	<body>
+		<!-- 冒泡事件 -->
+		<div id="app">
+			<div class="inner" style="background-color: pink;height: 150px;" @click.self="divClick">
+					<!-- <input type="button" value="戳他" @click="btnClick" /> -->
+				<input type="button" value="戳他" @click.stop="btnClick" />
+			</div>
+			<!-- 阻止默认行为 -->
+			<a href="https://www.baidu.com" @click.prevent.once="linkClick">有问题，去百度</a>
+		</div>
+		
+	</body>
+	<script>
+		var vm=new Vue({
+			el:'#app',
+			data:{
+				msg:''
+			},
+			methods:{
+				divClick(){
+					alert("div的点击事件")
+				},
+				btnClick(){
+					alert("btn的点击事件")
+				},
+				linkClick(){
+					console.log("阻止跳转到百度")
+				}
+			}
+		})
+	</script>
+</html>

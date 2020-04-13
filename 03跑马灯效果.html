@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="./libs/vue.js"></script>
+		<style></style>
+	</head>
+	<body>
+		<div id="run-house">
+			<input type="button"  value="开启跑马灯" @click="start"/>
+			<input type="button"  value="关闭跑马灯" @click="stop"/>
+			<h4>{{msg}}</h4>
+		</div>
+	</body>
+	<script>
+		// 注意：在vm实例中想要获取data中的数据，或者调用methods方法，必须通过this.数据属性名访问
+		var vm=new Vue({
+			el:'#run-house',
+			data:{
+				msg:'猥琐发育，稳住我们能赢！',
+				intervalId:null//在data上定义定时器id
+			},
+			methods:{
+				// start(){
+				// 	// 内部实例访问外部，必须指向this
+				// 	var that=this
+				// 	console.log(this.msg)
+				// 	setInterval(function(){
+				// 		var start=that.msg.substring(0,1);
+				// 		var end=that.msg.substring(1);
+				// 		that.msg=end+start//我自己调用我自己可还行。。。
+				// 	},400)
+				// }
+				// 写法二：
+			start(){
+				if(this.intervalId!=null)
+					return
+				 this.intervalId=setInterval(()=>{
+					var start=this.msg.substring(0,1);
+					var end=this.msg.substring(1);
+					this.msg=end+start
+				},300)
+			},
+			stop(){
+				clearInterval(this.intervalId)
+				// 每当清除定时器，定时器依然存在，所以这里需要赋值为null，然后才能进行重开
+				this.intervalId=null
+			}
+			}
+		})
+	</script>
+</html>
